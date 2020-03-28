@@ -7,10 +7,12 @@ import { World, Product, Pallier } from './world';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   title = 'IsisAdventureCapitalist';
   world: World = new World();
   server: string;
+  username: string = 'testUsername';
   constructor(private service: RestserviceService) {
     this.server = service.getServer();
     service.getWorld().then(

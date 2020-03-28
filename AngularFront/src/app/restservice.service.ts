@@ -7,13 +7,32 @@ import { World, Pallier, Product} from './world';
 })
 
 export class RestserviceService {
-  constructor(private http: HttpClient) {}
+
   server = 'http://localhost:8080/';
   user = '';
 
   public getServer()
   {
     return this.server;
+  }
+
+  public getUser()
+  {
+    return this.server;
+  }
+
+  public setServer(server)
+  {
+    this.server = server;
+  }
+
+  public setUser(user)
+  {
+    this.user = user;
+  }
+
+  constructor(private http: HttpClient) {
+  
   }
   
   private handleError(error: any): Promise<any> {
