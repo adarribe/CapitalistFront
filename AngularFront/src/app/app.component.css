@@ -2,13 +2,24 @@
   width: 100px;height: 100px;border-radius: 50%
 
 }
+.row{
+  background-color: rgb(61, 56, 56);
+  color : rgb(0, 0, 0);
+}
 
-.buybtn{
-  display:block;
-  width:100px;
-  line-height:50px;
-  text-align:center;
-  color:black;
+.list-group-item, .buybtn {
+  padding: 0 6px 0 6px;
+  margin: 6px 8px 6px 8px;
+  min-width: 88px;
+  border-radius: 3px;
+  font-size: 14px;
+  text-align: center;
+  text-transform: uppercase;
   text-decoration:none;
-
+  border: none;
+  outline: none;
+  color : rgb(0, 0, 0);
+  background-color: rgb(228, 48, 48);
+  border-radius: 10px 0 0 10px;
+  font-size: 16px;
 }

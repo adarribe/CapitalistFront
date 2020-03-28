@@ -19,13 +19,16 @@
   .card > .card-inner {
     padding:0;
   }
+    
   .card .header h2, h3 {
     margin-bottom: 0px;
     margin-top:0px;
   }
+  
   .card .header {
     margin-bottom:2vh;
   }
+  
   .card img{
     width:100%;
   }
