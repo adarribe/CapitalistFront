@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
 import { Product } from '../world';
 
 declare var require;
@@ -12,18 +12,22 @@ const ProgressBar = require("progressbar.js");
 
 export class ProductComponent implements OnInit {
   lastupdate: number;
-  isRun: boolean;
+  prodInProgress: boolean;
   progressbar: any;
   product: Product;
   server: String="http://localhost:8080/";
 
   @ViewChild('bar') progressBarItem;
-
+  @Output() notifyProduction: EventEmitter<Product> = new EventEmitter<Product>();
+  @Output() notifyMoney: EventEmitter<number> = new EventEmitter<number>();
   
 
   constructor() { }
 
   ngOnInit(): void {
+    setInterval(() => {
+      this.calcScore();
+    }, 100);
   }
 
   ngAfterViewInit() {
@@ -56,9 +60,64 @@ export class ProductComponent implements OnInit {
       this.progressbar.animate(1, { duration: this.product.vitesse });
       this.product.timeleft = this.product.vitesse;
       this.lastupdate = Date.now();
-      this.isRun = true;
-      console.log('test2');
+      this.prodInProgress = true;
     }
+  }
+
+  calcScore() {
+    if (this.prodInProgress) {
+      if (this.product.timeleft > 0) {
+        this.product.timeleft = this.product.timeleft - (Date.now() - this.lastupdate);
+      } else {
+        this.product.timeleft = 0;
+        this.lastupdate = 0;
+        this.prodInProgress = false;
+        this.progressbar.set(0);
+      }
+      // on prévient le composant parent que ce produit a généré son revenu.
+      this.notifyProduction.emit(this.product);
     }
+  }
+
+  _qtmulti: number;
+  @Input()
+  set qtmulti(value: number) {
+  this._qtmulti = value;
+  if (this._qtmulti && this.product) this.calcMaxCanBuy();
+  }
+
+  _money: number;
+  @Input()
+  set money(value: number) {
+    this._money = value;
+  }
+
+  calcMaxCanBuy(): number {
+    let qMax = 0;
+    let maxMonney = 0;
+    let maxBuyable = 1;
+    while (maxMonney < this._money) {
+      maxBuyable = maxBuyable * this.product.cout;
+      maxMonney = maxMonney + maxBuyable;
+      qMax = qMax + 1;
+      if (this.product.cout > this._money) {
+        qMax = 0;
+      }
+    }
+    return qMax;
+  }
+
+ buyProduct() {
+   if (this._qtmulti <= this.calcMaxCanBuy()) {
+      var price = this.product.cout * this._qtmulti;
+      this.product.quantite = this.product.quantite + this._qtmulti;
+      this.notifyMoney.emit(price);
+      this.product.palliers.pallier.forEach(val => {
+        if (!val.unlocked && this.product.quantite > val.seuil) {
+          this.product.palliers.pallier[this.product.palliers.pallier.indexOf(val)].unlocked = true;
+        }
+      })
+    }
+  }
 
 }

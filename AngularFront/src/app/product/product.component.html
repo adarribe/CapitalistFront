@@ -1,8 +1,11 @@
 <div class="col-sm-4">
-    <img [attr.src]="server+product.logo" (click)="startFabrication()"/>
-    <div class="progress" #bar> </div>
-        <h2>{{product.name}}</h2>
-        <h3> Coût : {{product.cout}}</h3>
-        <!--bouton achter-->
+
+    <img class="img" [attr.src]="server+product.logo" (click)="startFabrication()"/>
+    <span>Quantité : {{product.quantite}}</span>
+
+    <div class="progress" #bar></div>
+        <p>{{product.name}}</p>
+        <p> Coût : {{product.cout}}</p>
+        <p><button href="#" class="btn" (click)="buyProduct()">Buy</button></p>
 </div>
  

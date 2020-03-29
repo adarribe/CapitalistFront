@@ -9,15 +9,14 @@
     <div class="col-md-1"><span id="worldimage"><img src="http://localhost:8080/world.png" class="round" /> </span></div>
     <div class="col-md-4"><span id="worldname">{{world.name}}</span></div>
     <!--<div class="col-md-4"><span id="worldmoney">Votre argent: {{world.money}} $</span></div>-->
-    <div class="col-md-4"><span [innerHTML]="world.money | bigvalue"> </span></div>
-    <div class="col-md-1"><span id="buybutton1"><button class="buybtn">Acheter x1</button></span></div>
+    <div class="col-md-4"><span [innerHTML]="world.money | bigvalue"></span></div>
+    <!--<div class="col-md-1"><span id="buybutton1"><button class="buybtn">Acheter x1</button></span></div>
     <div class="col-md-1"><span id="buybutton10"><button class="buybtn">Acheter x10</button></span></div>
-    <div class="col-md-1"><span id="buybutton100"><button class="buybtn">Acheter x100</button></span></div>
+    <div class="col-md-1"><span id="buybutton100"><button class="buybtn">Acheter x100</button></span></div>-->
   </div>
     <div class="row">
       <div class="col-md-12">Bienvenue  (insérer ici le chemin pour récupérer le username) !</div>
     </div>
-    <div class="col-md-12">
         <div class="col-md-2">
           <div class="list-group">
             <a href="#" class="list-group-item list-group-item-action">Unlocks</a>
@@ -27,13 +26,13 @@
             <a href="#" class="list-group-item list-group-item-action">Investors</a>
           </div>
         </div>
-        <div class="col-md-8">
-          <app-product [prod]="world.products.product[0]"></app-product>
-          <app-product [prod]="world.products.product[1]"></app-product>
-          <app-product [prod]="world.products.product[2]"></app-product>
-          <app-product [prod]="world.products.product[3]"></app-product>
-          <app-product [prod]="world.products.product[4]"></app-product>
-          <app-product [prod]="world.products.product[5]"></app-product>
+        <div class="col-md-10">
+          <app-product [prod]="world.products.product[0]" [money]="world.money" [qtmulti]="qtmulti" (notifyProduction)="onProductionDone($event)" (notifyMoney)="onBuy($event)"></app-product>
+          <app-product [prod]="world.products.product[1]" [money]="world.money" [qtmulti]="qtmulti" (notifyProduction)="onProductionDone($event)" (notifyMoney)="onBuy($event)"></app-product>
+          <app-product [prod]="world.products.product[2]" [money]="world.money" [qtmulti]="qtmulti" (notifyProduction)="onProductionDone($event)" (notifyMoney)="onBuy($event)"></app-product>
+          <app-product [prod]="world.products.product[3]" [money]="world.money" [qtmulti]="qtmulti" (notifyProduction)="onProductionDone($event)" (notifyMoney)="onBuy($event)"></app-product>
+          <app-product [prod]="world.products.product[4]" [money]="world.money" [qtmulti]="qtmulti" (notifyProduction)="onProductionDone($event)" (notifyMoney)="onBuy($event)"></app-product>
+          <app-product [prod]="world.products.product[5]" [money]="world.money" [qtmulti]="qtmulti" (notifyProduction)="onProductionDone($event)" (notifyMoney)="onBuy($event)"></app-product>
         </div>
-  </div>
+  
 </div>

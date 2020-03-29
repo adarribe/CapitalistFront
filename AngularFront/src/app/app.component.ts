@@ -13,6 +13,7 @@ export class AppComponent {
   world: World = new World();
   server: string;
   username: string = 'testUsername';
+  qtmulti=1;
   constructor(private service: RestserviceService) {
     this.server = service.getServer();
     service.getWorld().then(
@@ -20,5 +21,14 @@ export class AppComponent {
     world => {
       this.world = world;
     });
+  }
+
+  onProductionDone(p: Product) {
+    this.world.money = this.world.money + p.quantite * p.revenu * (1 + (this.world.activeangels * this.world.angelbonus / 100));
+    this.world.score = this.world.score + p.quantite * p.revenu * (1 + (this.world.activeangels * this.world.angelbonus / 100));
+  }
+
+  onBuy(m: number) {
+    this.world.money = this.world.money - m;
   }
 }
