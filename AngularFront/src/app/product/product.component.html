@@ -1,7 +1,8 @@
 <div class="col-sm-4">
-    <img src="'http://localhost:8080/'+product.logo"/>
-        
+    <img [attr.src]="server+product.logo" (click)="startFabrication()"/>
+    <div class="progress" #bar> </div>
         <h2>{{product.name}}</h2>
         <h3> Coût : {{product.cout}}</h3>
+        <!--bouton achter-->
 </div>
  

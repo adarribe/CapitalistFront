@@ -7,11 +7,13 @@ import { AppComponent } from './app.component';
 import { ProductComponent } from './product/product.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { BigvaluePipe } from './bigvalue.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductComponent
+    ProductComponent,
+    BigvaluePipe
   ],
   imports: [
     BrowserModule,
