@@ -16,6 +16,7 @@ export class ProductComponent implements OnInit {
   progressbar: any;
   product: Product;
   server: String="http://localhost:8080/";
+  progress:any;
 
   @ViewChild('bar') progressBarItem;
   @Output() notifyProduction: EventEmitter<Product> = new EventEmitter<Product>();
@@ -56,8 +57,8 @@ export class ProductComponent implements OnInit {
   
   startFabrication() {
     if (this.product.quantite >= 1) {
-      const progress = (this.product.vitesse - this.product.timeleft) / this.product.vitesse;
-      this.progressbar.animate(1, { duration: this.product.vitesse });
+      this.progress = (this.product.vitesse - this.product.timeleft) / this.product.vitesse;
+      this.progressbar.animate(1, { duration: this.progress });
       this.product.timeleft = this.product.vitesse;
       this.lastupdate = Date.now();
       this.prodInProgress = true;
@@ -71,11 +72,14 @@ export class ProductComponent implements OnInit {
       } else {
         this.product.timeleft = 0;
         this.lastupdate = 0;
-        this.prodInProgress = false;
+        this.prodInProgress  = false;
         this.progressbar.set(0);
       }
       // on prévient le composant parent que ce produit a généré son revenu.
       this.notifyProduction.emit(this.product);
+    }
+    if (this.product.managerUnlocked) {
+      this.startFabrication();
     }
   }
 

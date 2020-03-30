@@ -8,12 +8,14 @@ import { ProductComponent } from './product/product.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { BigvaluePipe } from './bigvalue.pipe';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductComponent,
-    BigvaluePipe
+    BigvaluePipe,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

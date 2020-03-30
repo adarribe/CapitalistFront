@@ -19,11 +19,11 @@
     </div>
         <div class="col-md-2">
           <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action">Unlocks</a>
-            <a href="#" class="list-group-item list-group-item-action">Cash Upgrades</a>
-            <a href="#" class="list-group-item list-group-item-action">Angel Upgrades</a>
-            <a href="#" class="list-group-item list-group-item-action">Managers</a>
-            <a href="#" class="list-group-item list-group-item-action">Investors</a>
+            <div class="buttonleft btn btn-primary btn-lg" data-toggle="modal" (click)="unlocksModal.show()" >Unlocks</div>
+            <div class="buttonleft btn btn-primary btn-lg" data-toggle="modal" (click)="cashupgradesModal.show()" >Cash Upgrades</div>
+            <div class="buttonleft btn btn-primary btn-lg" data-toggle="modal" (click)="angelupgradesModal.show()" >Angel Upgrades</div>
+            <div class="buttonleft btn btn-primary btn-lg" data-toggle="modal" (click)="managersModal.show()" >Managers</div>
+            <div class="buttonleft btn btn-primary btn-lg" data-toggle="modal" (click)="investorssModal.show()" >Investors</div>
           </div>
         </div>
         <div class="col-md-10">
@@ -34,5 +34,26 @@
           <app-product [prod]="world.products.product[4]" [money]="world.money" [qtmulti]="qtmulti" (notifyProduction)="onProductionDone($event)" (notifyMoney)="onBuy($event)"></app-product>
           <app-product [prod]="world.products.product[5]" [money]="world.money" [qtmulti]="qtmulti" (notifyProduction)="onProductionDone($event)" (notifyMoney)="onBuy($event)"></app-product>
         </div>
+
+        <app-modal #managersModal>
+          <div class="app-modal-header">
+          <h4 class="modal-title">Managers make you feel better !</h4>
+          </div>
+          <div class="app-modal-body">
+            <div *ngFor="let manager of world.managers.pallier">
+              <div class="col-md-5">
+                  <span>{{manager.name}}</span>
+              </div>
+              <div class="col-md-5">
+                  <span>{{manager.seuil}}</span>
+              </div>
+                  <button type="button" (click)="buyManager(manager)">Acheter</button>
+            </div>
+          </div>
+          <div class="app-modal-footer">
+          <button type="button" class="btn btn-default" (click)="managersModal.hide()">Close</button>
+          </div>
+         </app-modal>
+         
   
 </div>

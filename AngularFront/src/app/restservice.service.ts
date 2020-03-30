@@ -39,8 +39,10 @@ export class RestserviceService {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);
   }
+
   getWorld(): Promise<World> {
     return this.http.get(this.server + 'demo/generic/world')
       .toPromise().catch(this.handleError);
   }
+
 }
