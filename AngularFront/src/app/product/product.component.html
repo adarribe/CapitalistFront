@@ -6,6 +6,6 @@
     <div class="progress" #bar></div>
         <p>{{product.name}}</p>
         <p> Coût : {{product.cout}}</p>
-        <p><button href="#" class="btn" (click)="buyProduct()">Buy</button></p>
+        <p><button class="btn" (click)="buyProduct()">Buy <span>x{{_qtmulti}}</span></button></p>
 </div>
  

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RestserviceService } from './restservice.service';
 import { World, Product, Pallier } from './world';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
@@ -8,13 +9,16 @@ import { World, Product, Pallier } from './world';
   styleUrls: ['./app.component.css']
 })
 
+
 export class AppComponent {
   title = 'IsisAdventureCapitalist';
   world: World = new World();
   server: string;
   username: string = 'testUsername';
   qtmulti=1;
-  constructor(private service: RestserviceService) {
+  badgeManagers=0;
+
+  constructor(private service: RestserviceService, private snackBar: MatSnackBar) {
     this.server = service.getServer();
     service.getWorld().then(
 
@@ -26,6 +30,24 @@ export class AppComponent {
   onProductionDone(p: Product) {
     this.world.money = this.world.money + p.quantite * p.revenu * (1 + (this.world.activeangels * this.world.angelbonus / 100));
     this.world.score = this.world.score + p.quantite * p.revenu * (1 + (this.world.activeangels * this.world.angelbonus / 100));
+    if (this.world.money >= 150) {
+      this.badgeManagers = 1; 
+    }
+    if (this.world.money >= 500) {
+      this.badgeManagers = 2; 
+    }
+    if (this.world.money >= 1000) {
+      this.badgeManagers = 3; 
+    }
+    if (this.world.money >= 2000) {
+      this.badgeManagers = 4; 
+    }
+    if (this.world.money >= 5000) {
+      this.badgeManagers = 5; 
+    }
+    if (this.world.money >= 10000) {
+      this.badgeManagers = 6; 
+    }
   }
 
   onBuy(m: number) {
@@ -41,6 +63,26 @@ export class AppComponent {
           this.world.products.product[this.world.products.product.indexOf(element)].managerUnlocked = true;
         }
       });
+    }
+  }
+
+  popMessage(message : string) : void {
+    this.snackBar.open(message, "", { duration : 2000 })
+    }
+
+  multFun() {
+    switch (this.qtmulti) {
+      case 1:
+        this.qtmulti = 10
+        break;
+      case 10:
+        this.qtmulti = 100
+        break;
+      case 100:
+        this.qtmulti = 999
+        break;
+      default:
+        this.qtmulti = 1
     }
   }
 }

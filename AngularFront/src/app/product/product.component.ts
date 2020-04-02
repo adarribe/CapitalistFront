@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter, ElementRef } from '@angular/core';
 import { Product } from '../world';
 
 declare var require;
@@ -18,7 +18,7 @@ export class ProductComponent implements OnInit {
   server: String="http://localhost:8080/";
   progress:any;
 
-  @ViewChild('bar') progressBarItem;
+  @ViewChild('bar') progressBarItem: ElementRef;
   @Output() notifyProduction: EventEmitter<Product> = new EventEmitter<Product>();
   @Output() notifyMoney: EventEmitter<number> = new EventEmitter<number>();
   
@@ -35,13 +35,10 @@ export class ProductComponent implements OnInit {
     setTimeout(() => {
       this.progressbar = new ProgressBar.Line(this.progressBarItem.nativeElement, {
         strokeWidth: 4,
-        easing: 'easeInOut',
-        color: '#FFEA82',
-        trailColor: '#eee',
-        trailWidth: 1,
+        easing: 'easeOut',
         svgStyle: { width: '100%', height: '100%' },
-        from: { color: '#FFEA82' },
-        to: { color: '#ED6A5A' },
+        from: { color: '#750000' },
+        to: { color: '#02d60d' },
         step: (state, bar) => {
           bar.path.setAttribute('stroke', state.color);
         }
@@ -86,8 +83,12 @@ export class ProductComponent implements OnInit {
   _qtmulti: number;
   @Input()
   set qtmulti(value: number) {
-  this._qtmulti = value;
-  if (this._qtmulti && this.product) this.calcMaxCanBuy();
+    if (value >= 999) {
+      this._qtmulti = this.calcMaxCanBuy();
+    }
+    else {
+      this._qtmulti = value;
+    }
   }
 
   _money: number;
