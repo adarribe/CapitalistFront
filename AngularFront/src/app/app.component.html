@@ -10,14 +10,15 @@
     <div class="col-md-3"><span id="worldname">Nom du monde : {{world.name}}</span></div>
     <div class="col-md-3"><span id="worldscore">Votre score: {{world.score}}</span></div>
     <div class="col-md-3"><span>Votre argent: $</span><span id=worldmoney [innerHTML]="world.money | bigvalue"></span></div>
-    <div class="col-md-2"><button>Achat multiplicateur</button></div>
+    <div class="col-md-2"><button *ngIf="qtmulti!=999" id="multbutton" (click)="multFun()">Acheter <span>x{{qtmulti}}</span></button>
+                          <button *ngIf="qtmulti==999" id="multbutton" (click)="multFun()">Acheter Max</button></div>
   </div>
     <div class="row">
       <div class="col-md-12">Bienvenue  (insérer ici le chemin pour récupérer le username) !</div>
     </div>
         <div class="col-md-2">
           <div class="list-group">
-            <div class="buttonleft btn btn-primary btn-lg" data-toggle="modal" (click)="managersModal.show()" >Managers</div>
+            <button mat-raised-button color="primary" [matBadge]="badgeManagers" [matBadgeHidden]="badgeManagers==0" matBadgePosition="before" class="buttonleft btn btn-primary btn-lg" data-toggle="modal" (click)="managersModal.show()" >Managers</button>
             <!-- <div class="buttonleft btn btn-primary btn-lg" data-toggle="modal" (click)="unlocksModal.show()" >Unlocks</div>
             <div class="buttonleft btn btn-primary btn-lg" data-toggle="modal" (click)="cashupgradesModal.show()" >Cash Upgrades</div>
             <div class="buttonleft btn btn-primary btn-lg" data-toggle="modal" (click)="angelupgradesModal.show()" >Angel Upgrades</div>

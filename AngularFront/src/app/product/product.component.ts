@@ -83,8 +83,12 @@ export class ProductComponent implements OnInit {
   _qtmulti: number;
   @Input()
   set qtmulti(value: number) {
-  this._qtmulti = value;
-  if (this._qtmulti && this.product) this.calcMaxCanBuy();
+    if (value >= 999) {
+      this._qtmulti = this.calcMaxCanBuy();
+    }
+    else {
+      this._qtmulti = value;
+    }
   }
 
   _money: number;
