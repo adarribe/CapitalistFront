@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { BigvaluePipe } from './bigvalue.pipe';
 import { ModalComponent } from './modal/modal.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ModalComponent } from './modal/modal.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ],
   providers: [RestserviceService],
   bootstrap: [AppComponent]

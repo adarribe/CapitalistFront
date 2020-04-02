@@ -25,6 +25,7 @@
             ],
             "styles": [
               "src/styles.css"
+
             ],
             "scripts": ["node_modules/progressbar.js/dist/progressbar.js"]
           },

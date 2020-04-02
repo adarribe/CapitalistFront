@@ -35,13 +35,10 @@ export class ProductComponent implements OnInit {
     setTimeout(() => {
       this.progressbar = new ProgressBar.Line(this.progressBarItem.nativeElement, {
         strokeWidth: 4,
-        easing: 'easeInOut',
-        color: '#FFEA82',
-        trailColor: '#eee',
-        trailWidth: 1,
+        easing: 'easeOut',
         svgStyle: { width: '100%', height: '100%' },
-        from: { color: '#FFEA82' },
-        to: { color: '#ED6A5A' },
+        from: { color: '#750000' },
+        to: { color: '#02d60d' },
         step: (state, bar) => {
           bar.path.setAttribute('stroke', state.color);
         }

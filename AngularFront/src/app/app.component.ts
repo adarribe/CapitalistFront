@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RestserviceService } from './restservice.service';
 import { World, Product, Pallier } from './world';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ export class AppComponent {
   server: string;
   username: string = 'testUsername';
   qtmulti=1;
-  constructor(private service: RestserviceService) {
+  constructor(private service: RestserviceService, private snackBar: MatSnackBar) {
     this.server = service.getServer();
     service.getWorld().then(
 
@@ -43,4 +44,8 @@ export class AppComponent {
       });
     }
   }
+
+  popMessage(message : string) : void {
+    this.snackBar.open(message, "", { duration : 2000 })
+    }
 }
