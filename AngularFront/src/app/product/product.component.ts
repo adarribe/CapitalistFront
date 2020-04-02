@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter, ElementRef } from '@angular/core';
 import { Product } from '../world';
 
 declare var require;
@@ -18,7 +18,7 @@ export class ProductComponent implements OnInit {
   server: String="http://localhost:8080/";
   progress:any;
 
-  @ViewChild('bar') progressBarItem;
+  @ViewChild('bar') progressBarItem: ElementRef;
   @Output() notifyProduction: EventEmitter<Product> = new EventEmitter<Product>();
   @Output() notifyMoney: EventEmitter<number> = new EventEmitter<number>();
   
