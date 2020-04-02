@@ -2,12 +2,15 @@
   width: 100px;height: 100px;border-radius: 50%
 
 }
-.row{
-  background-color: rgb(61, 56, 56);
+.col-md-2{
   color : rgb(0, 0, 0);
 }
 
-.list-group-item, .buybtn {
+.container-fluid{
+  color : rgb(0, 0, 0);
+}
+
+.list-group{
   padding: 0 6px 0 6px;
   margin: 6px 8px 6px 8px;
   min-width: 88px;
@@ -23,3 +26,19 @@
   border-radius: 10px 0 0 10px;
   font-size: 16px;
 }
+
+.col-md-10{
+  width: 1800px;
+  height: 170px;
+  margin-left: 290px;
+  margin-top: -40px;
+}
+
+.col-md-4{
+  font-size: x-large;
+
+}
+
+
+
+
