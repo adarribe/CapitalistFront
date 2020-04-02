@@ -9,7 +9,7 @@
 .container-fluid{
   color : rgb(0, 0, 0);
 }
-
+/*
 .list-group{
   padding: 0 6px 0 6px;
   margin: 6px 8px 6px 8px;
@@ -26,7 +26,7 @@
   border-radius: 10px 0 0 10px;
   font-size: 16px;
 }
-
+*/
 .col-md-10{
   width: 1800px;
   height: 170px;
