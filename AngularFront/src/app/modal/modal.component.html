@@ -1,1 +1,24 @@
-<p>modal works!</p>
+
+<app-modal #managersModal>
+    <div class="app-modal-header">
+    <h4 class="modal-title">Managers make you feel better !</h4>
+    </div>
+    <div class="app-modal-body">
+      <div *ngFor="let manager of world.managers.pallier">
+        <div class="col-md-1">
+          <img [attr.src]="server+manager.logo" class="round"/> 
+        </div>
+        <div class="col-md-2">
+            <span>{{manager.name}}</span>
+        </div>
+        <div class="col-md-3">
+            <span>{{manager.seuil}}</span>
+        </div> 
+        <div class="col-md-4">
+            <button class="btn" type="button" (click)="buyManager(manager)" (click)="popMessage('Manager embauché !')">Acheter</button>
+        </div>
+        </div>
+    </div>
+    <div class="app-modal-footer">
+    <button type="button" class="btn btn-default" (click)="managersModal.hide()">Close</button>
+    </div>

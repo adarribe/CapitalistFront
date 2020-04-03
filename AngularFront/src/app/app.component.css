@@ -7,7 +7,7 @@
 .col-md-2{
   color : rgb(0, 0, 0);
   font-family :American Typewriter, serif;
-  font-size: 1em;
+  font-size: 2em;
 
 }
 
@@ -30,7 +30,7 @@
 }
 
 .list-group{
-  padding: 0 6px 0 6px;
+  padding: 6px 12px 6px 12px;
   margin: 6px 8px 6px 8px;
   min-width: 88px;
   border-radius: 3px;
