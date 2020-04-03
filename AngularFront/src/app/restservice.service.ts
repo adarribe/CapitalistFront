@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { World, Pallier, Product} from './world';
 
 @Injectable({
@@ -28,9 +28,6 @@ export class RestserviceService {
     this.server = server;
   }
 
-  
-  
-
   constructor(private http: HttpClient) {
   
   }
@@ -41,8 +38,47 @@ export class RestserviceService {
   }
 
   getWorld(): Promise<World> {
-    return this.http.get(this.server + 'demo/generic/world')
-      .toPromise().catch(this.handleError);
-  }
+    return this.http.get(this.server + "webresources/generic/world", {
+   headers: this.setHeaders(this.user)})
+    .toPromise().catch(this.handleError);
+   };
+   
+
+  private setHeaders(user: string): HttpHeaders {
+    var headers = new HttpHeaders();
+    headers.append("X-User",user);
+    return headers;
+   
+  };
+
+  public putManager(manager: Pallier): Promise<Response> {
+     return this.http
+       .put(this.server + "webresources/generic/manager", manager, {
+         headers: { "X-user": this.getUser() }
+       })
+       .toPromise()
+       .then(response => response)
+       .catch(this.handleError);
+   };
+
+   public putUpgrade(upgrade: Pallier): Promise<Response> {
+    return this.http
+      .put(this.server + "webresources/generic/upgrade", upgrade, {
+        headers: { "X-user": this.getUser() }
+      })
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  };
+
+  public putProduct(produit: Product): Promise<Response> {
+    return this.http
+      .put(this.server + "webresources/generic/product", produit, {
+        headers: { "X-user": this.getUser() }
+      })
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError);
+  };
 
 }
