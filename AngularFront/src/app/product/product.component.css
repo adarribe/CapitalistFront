@@ -1,9 +1,29 @@
 
 .img{
+  padding: 15px 15px 15px 15px;
   height: 100px;
   width: 100px;
 }
-/*
+
+.obj {
+  font-family: Georgia, serif;
+  font-size: 22px;
+  letter-spacing: -0.2px;
+  word-spacing: -0.2px;
+  color: rgb(0, 194, 219);;
+  font-weight: 700;
+  text-decoration: none;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: capitalize;
+  }
+.text{
+  
+  background-color: blueviolet;
+  font-family :American Typewriter, serif;
+
+}
+
 .btn{
   padding: 0 6px 0 6px;
   margin: 6px 8px 6px 8px;
@@ -16,9 +36,10 @@
   border: none;
   outline: none;
   color : rgb(0, 0, 0);
-  background-color: rgb(228, 48, 48);
+  background-color: rgb(0, 194, 219);
   border-radius: 10px 0 0 10px;
   font-size: 16px;
 }
 
-*/
+
+

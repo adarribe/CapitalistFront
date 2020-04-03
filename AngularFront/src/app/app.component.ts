@@ -13,7 +13,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class AppComponent {
   title = 'IsisAdventureCapitalist';
   world: World = new World();
-  server: string;
+  //server: string;
+  server: String="http://localhost:8080/";
   username: string = 'testUsername';
   qtmulti=1;
   badgeManagers=0;

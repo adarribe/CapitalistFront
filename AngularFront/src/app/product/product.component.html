@@ -1,11 +1,11 @@
 <div class="col-sm-4">
-
+    <div class="obj">
+    <p>  {{product.name}}</p>
+    </div>
     <img class="img" [attr.src]="server+product.logo" (click)="startFabrication()"/>
-    <span>Quantité : {{product.quantite}}</span>
-
-    <div class="progress" #bar></div>
-        <p>{{product.name}}</p>
-        <p> Coût : {{product.cout}}</p>
+    <span> Quantité : {{product.quantite}}</span>   
+        <p> <span>  Coût : {{product.cout}} </span> </p>
+        <div class="progress" #bar></div>
         <p><button class="btn" (click)="buyProduct()">Buy <span>x{{_qtmulti}}</span></button></p>
 </div>
  

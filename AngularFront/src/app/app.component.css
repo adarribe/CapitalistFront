@@ -2,14 +2,33 @@
   width: 100px;height: 100px;border-radius: 50%
 
 }
+
+
 .col-md-2{
   color : rgb(0, 0, 0);
+  font-family :American Typewriter, serif;
+  font-size: 2em;
+
+}
+
+.col-md-3{
+  color : rgb(0, 0, 0);
+  
+  font-family :American Typewriter, serif;
+  font-size: 2em;
+
 }
 
 .container-fluid{
   color : rgb(0, 0, 0);
+  background-color:white;
+  font-family :American Typewriter, serif;
+  font-size: 1em;
+  text-align: center;
+
+  
 }
-/*
+
 .list-group{
   padding: 0 6px 0 6px;
   margin: 6px 8px 6px 8px;
@@ -22,16 +41,17 @@
   border: none;
   outline: none;
   color : rgb(0, 0, 0);
-  background-color: rgb(228, 48, 48);
+  background-color: rgb(0, 194, 219);
   border-radius: 10px 0 0 10px;
   font-size: 16px;
 }
-*/
+
 .col-md-10{
   width: 1800px;
   height: 170px;
   margin-left: 290px;
   margin-top: -40px;
+  background-color:white;
 }
 
 .col-md-4{
@@ -39,6 +59,49 @@
 
 }
 
+.body {
+  color:black;
+  background-color:rgb(0, 194, 219);
+  }
 
+  .btn1 {
+    padding: 0 6px 0 6px;
+    margin: 6px 8px 6px 8px;
+    min-width: 88px;
+    border-radius: 3px;
+    font-size: 14px;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration:none;
+    border: none;
+    outline: none;
+    color : rgb(255, 255, 255);
+    background-color: rgb(65, 84, 87);
+    border-radius: 10px 0 0 10px;
+    font-size: 16px;
+  }
 
+  .btn{
+    padding: 0 6px 0 6px;
+    margin: 6px 8px 6px 8px;
+    min-width: 88px;
+    border-radius: 3px;
+    font-size: 14px;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration:none;
+    border: none;
+    outline: none;
+    color : rgb(0, 0, 0);
+    background-color: rgb(0, 194, 219);
+    border-radius: 10px 0 0 10px;
+    font-size: 16px;
+  }
 
+  .text{
+    padding: 50px 50px 50px 50px;
+    background-color: blueviolet;
+    font-family :American Typewriter, serif;
+  
+  }
+  
