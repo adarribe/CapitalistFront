@@ -38,7 +38,7 @@ export class RestserviceService {
   }
 
   getWorld(): Promise<World> {
-    return this.http.get(this.server + "webresources/generic/world", {
+    return this.http.get(this.server + "demo/generic/world", {
    headers: this.setHeaders(this.user)})
     .toPromise().catch(this.handleError);
    };
@@ -53,7 +53,7 @@ export class RestserviceService {
 
   public putManager(manager: Pallier): Promise<Response> {
      return this.http
-       .put(this.server + "webresources/generic/manager", manager, {
+       .put(this.server + "demo/generic/manager", manager, {
          headers: { "X-user": this.getUser() }
        })
        .toPromise()
@@ -63,7 +63,7 @@ export class RestserviceService {
 
    public putUpgrade(upgrade: Pallier): Promise<Response> {
     return this.http
-      .put(this.server + "webresources/generic/upgrade", upgrade, {
+      .put(this.server + "demo/generic/upgrade", upgrade, {
         headers: { "X-user": this.getUser() }
       })
       .toPromise()
@@ -73,7 +73,7 @@ export class RestserviceService {
 
   public putProduct(produit: Product): Promise<Response> {
     return this.http
-      .put(this.server + "webresources/generic/product", produit, {
+      .put(this.server + "demo/generic/product", produit, {
         headers: { "X-user": this.getUser() }
       })
       .toPromise()
