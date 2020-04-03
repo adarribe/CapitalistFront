@@ -11,6 +11,7 @@ import { BigvaluePipe } from './bigvalue.pipe';
 import { ModalComponent } from './modal/modal.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatBadgeModule} from '@angular/material/badge';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {MatBadgeModule} from '@angular/material/badge';
     BrowserAnimationsModule,
     HttpClientModule,
     MatSnackBarModule,
-    MatBadgeModule
+    MatBadgeModule,
+    FormsModule
   ],
   providers: [RestserviceService],
   bootstrap: [AppComponent]

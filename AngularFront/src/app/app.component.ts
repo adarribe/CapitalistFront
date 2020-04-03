@@ -15,14 +15,14 @@ export class AppComponent {
   world: World = new World();
   //server: string;
   server: String="http://localhost:8080/";
-  username: string = 'testUsername';
+  username: string = '';
   qtmulti=1;
   badgeManagers=0;
 
   constructor(private service: RestserviceService, private snackBar: MatSnackBar) {
     this.server = service.getServer();
-    service.getWorld().then(
-
+    this.createUsername();
+    service.getWorld().then( 
     world => {
       this.world = world;
     });
@@ -85,5 +85,20 @@ export class AppComponent {
       default:
         this.qtmulti = 1
     }
+  }
+
+   
+   onUsernameChanged(): void {
+    localStorage.setItem("username", this.username);
+    this.service.setUser(this.username);
+  }
+  
+  createUsername(): void {
+    this.username = localStorage.getItem("username");
+    if (this.username == '') {
+      this.username = 'Player' + Math.floor(Math.random() * 10000);
+      localStorage.setItem("username", this.username);
+    }
+    this.service.setUser(this.username);
   }
 }

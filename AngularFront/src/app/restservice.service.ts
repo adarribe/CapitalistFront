@@ -16,9 +16,11 @@ export class RestserviceService {
     return this.server;
   }
 
-  public getUser()
-  {
-    return this.server;
+  public getUser(): string {
+    return this.user;
+  }
+  public setUser(user: string) {
+    this.user = user;
   }
 
   public setServer(server)
@@ -26,10 +28,8 @@ export class RestserviceService {
     this.server = server;
   }
 
-  public setUser(user)
-  {
-    this.user = user;
-  }
+  
+  
 
   constructor(private http: HttpClient) {
   
