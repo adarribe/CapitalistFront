@@ -1,20 +1,20 @@
 
-<!-- <style>
+<style>
   * {
   border: 1px solid red;
   }
-</style> -->
+</style>
 
 <div class="body" >
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-2"> Bienvenue  {{username}}
-    </div>
+
     <div class="col-md-3"><span>Votre identifiant       </span>
     <input type="text" style="width: 160px; padding-left: 12px;" 
             [(ngModel)]="username" (change)="onUsernameChanged()" />
             </div>
   </div>
+
   <div class="row">
     <div class="col-md-1"><span id="worldimage"><img src="http://localhost:8080/world.png" class="round" /> </span></div>
     <div class="col-md-3"><span id="worldname">Nom du monde : {{world.name}}</span></div>
@@ -24,7 +24,9 @@
                           <button class="btn1" *ngIf="qtmulti==999" id="multbutton" (click)="multFun()">Acheter Max</button></div>
     
     </div>
-    
+    <div class="row">
+      <div class="col-md-12"> Bienvenue  {{username}}</div>
+      </div>
         <div class="col-md-2">
           <div class="list-group">
             <div  data-toggle="modal" (click)="managersModal.show()" >Managers</div>
