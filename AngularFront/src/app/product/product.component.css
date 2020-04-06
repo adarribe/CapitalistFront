@@ -1,4 +1,8 @@
-
+.colonne-centree
+{
+float: none;
+margin: 0 auto;
+}
 .img{
   padding: 15px 15px 15px 15px;
   height: 100px;

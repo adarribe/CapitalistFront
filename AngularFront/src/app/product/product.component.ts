@@ -56,7 +56,7 @@ export class ProductComponent implements OnInit {
   startFabrication() {
     if (this.product.quantite >= 1) {
       this.progress = (this.product.vitesse - this.product.timeleft) / this.product.vitesse;
-      this.progressbar.animate(1, { duration: this.progress });
+      this.progressbar.animate(1, { duration: this.product.vitesse });
       this.product.timeleft = this.product.vitesse;
       this.lastupdate = Date.now();
       this.prodInProgress = true;
