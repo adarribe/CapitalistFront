@@ -24,16 +24,15 @@
     
     </div>
     <div class="row">
-      <div class="col-md-12"> Bienvenue  {{username}}</div>
+      <div class="col-md-12"> Bienvenue {{username}}</div>
       </div>
         <div class="col-md-2">
           <div class="list-group">
             <div  data-toggle="modal" (click)="managersModal.show()" ></div>
             <button class="btn1" mat-raised-button color="primary" [matBadge]="badgeManagers" [matBadgeHidden]="badgeManagers==0" matBadgePosition="before" class="buttonleft btn btn-primary btn-lg" data-toggle="modal" (click)="managersModal.show()" >Managers</button>  
-            <!-- <div class="buttonleft btn btn-primary btn-lg" data-toggle="modal" (click)="unlocksModal.show()" >Unlocks</div>
-            <div class="buttonleft btn btn-primary btn-lg" data-toggle="modal" (click)="cashupgradesModal.show()" >Cash Upgrades</div>
-            <div class="buttonleft btn btn-primary btn-lg" data-toggle="modal" (click)="angelupgradesModal.show()" >Angel Upgrades</div>
-            <div class="buttonleft btn btn-primary btn-lg" data-toggle="modal" (click)="investorsModal.show()" >Investors</div>-->
+            <div class="buttonleft btn btn-primary btn-lg" data-toggle="modal" (click)="unlocksModal.show()" >Unlocks</div>
+            <div class="btn1" mat-raised-button color="primary" [matBadge]="badgeCashUpgrades" matBadgePosition="before" class="buttonleft btn btn-primary btn-lg" data-toggle="modal" (click)="cashupgradesModal.show()" >Cash Upgrades</div>
+            <!-- <div class="buttonleft btn btn-primary btn-lg" data-toggle="modal" (click)="angelupgradesModal.show()" >Angel Upgrades</div>-->
           </div>
         </div>
         <div class="col-md-10">         
@@ -51,26 +50,82 @@
             </div>
             <div class="app-modal-body">
               <div *ngFor="let manager of world.managers.pallier">
+                <div class="row">
                 <div class="col-md-1">
-                  <img [attr.src]="server+manager.logo" class="round"/> 
+                  <img [attr.src]="server+manager.logo" class="littleround"/> 
                 </div>
                 <div class="col-md-2">
                     <span>{{manager.name}}</span>
                 </div>
                 <div class="col-md-3">
                     <span>{{manager.seuil}}</span>
-                </div> 
-                <div class="col-md-4">
-                    <button class="btn" type="button" (click)="buyManager(manager)" (click)="popMessage('Manager embauché !')">Acheter</button>
                 </div>
-                </div>
+                <div class="col-md-2">
+                  <button class="btn" type="button" (click)="buyManager(manager)" (click)="popMessage('Manager embauché !')">Acheter</button>
+              </div>
+              </div>
+              </div>
             </div>
             <div class="app-modal-footer">
-            <button type="button" class="btn btn-default" (click)="managersModal.hide()">Close</button>
+            <button type="button" (click)="managersModal.hide()">Close</button>
+            </div>
+         </app-modal>
+
+         <app-modal #unlocksModal>
+          <div class="app-modal-header">
+            <h4 class="modal-title">Want to maximize profits ? Get your investments to these quotas !</h4>
+          </div>
+          <div class="app-modal-body">
+              <div *ngFor="let unlock of world.allunlocks.pallier">
+                <div class="row">
+                  <div class="col-md-1">
+                    <img [attr.src]="server+unlock.logo" class="littleround"/> 
+                  </div>
+                  <div class="col-md-5">
+                    <span>{{unlock.typeratio}}</span>
+                  </div>
+                  <div class="col-md-3">
+                    <span>x{{unlock.ratio}}</span>
+                  </div>
+                  <div class="col-md-3">
+                    <span>{{unlock.seuil}}</span>
+                  </div>
+                </div>
+              </div>
             </div>
           <div class="app-modal-footer">
-          <button type="button" class="btn btn-default" (click)="managersModal.hide()">Close</button>
+            <button type="button" (click)="unlocksModal.hide()">Close</button>
           </div>
-         </app-modal>
+        </app-modal>
+
+        <app-modal #cashupgradesModal>
+          <div class="app-modal-header">
+            <h4 class="modal-title">Boost your investments !</h4>
+          </div>
+          <div class="app-modal-body">
+            <div *ngFor="let upgrade of world.upgrades.pallier">
+              <div class="row">
+                <div class="col-md-1">
+                  <img [attr.src]="server+upgrade.logo" class="littleround"/> 
+                </div>
+                <div class="col-md-5">
+                  <span>{{upgrade.name}}</span>
+                </div>
+                <div class="col-md-3">
+                  <span>{{upgrade.typeratio}}</span>
+                </div>
+                <div class="col-md-3">
+                  <span>{{upgrade.seuil}}</span>
+                </div>
+                <div class="col-md-2">
+                  <button (click)="buyCashUpgrade(upgrade)">Acheter</button>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="app-modal-footer">
+            <button type="button" (click)="cashupgradesModal.hide()">Close</button>
+          </div>
+        </app-modal>
 </div>
 </div>

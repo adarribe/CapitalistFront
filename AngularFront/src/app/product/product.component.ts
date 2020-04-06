@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewChild, Output, EventEmitter, ElementRef } from '@angular/core';
 import { Product } from '../world';
+import { Pallier } from '../world';
 
 declare var require;
 const ProgressBar = require("progressbar.js");
@@ -72,7 +73,6 @@ export class ProductComponent implements OnInit {
         this.prodInProgress  = false;
         this.progressbar.set(0);
       }
-      // on prévient le composant parent que ce produit a généré son revenu.
       this.notifyProduction.emit(this.product);
     }
     if (this.product.managerUnlocked) {
@@ -99,18 +99,16 @@ export class ProductComponent implements OnInit {
 
   calcMaxCanBuy(): number {
     let qMax = 0;
-    let maxMonney = 0;
-    let maxBuyable = 1;
-    while (maxMonney < this._money) {
-      maxBuyable = maxBuyable * this.product.cout;
-      maxMonney = maxMonney + maxBuyable;
-      qMax = qMax + 1;
-      if (this.product.cout > this._money) {
-        qMax = 0;
-      }
+    let maxCost = 0;
+    let priceOne = this.product.cout*(this.product.croissance**this.product.quantite);
+    while ((maxCost+priceOne) <= this._money) {
+      maxCost += priceOne;
+      qMax ++;
+      priceOne = priceOne*this.product.croissance;
     }
     return qMax;
   }
+
 
  buyProduct() {
    if (this._qtmulti <= this.calcMaxCanBuy()) {
@@ -120,8 +118,20 @@ export class ProductComponent implements OnInit {
       this.product.palliers.pallier.forEach(val => {
         if (!val.unlocked && this.product.quantite > val.seuil) {
           this.product.palliers.pallier[this.product.palliers.pallier.indexOf(val)].unlocked = true;
+          this.calcUpgrade(val);
         }
       })
+    }
+  }
+
+  calcUpgrade(pallier: Pallier) {
+    switch (pallier.typeratio) {
+      case 'vitesse':
+        this.product.vitesse = this.product.vitesse / pallier.ratio;
+        break;
+      case 'gain':
+        this.product.revenu = this.product.revenu * pallier.ratio;
+        break;
     }
   }
 

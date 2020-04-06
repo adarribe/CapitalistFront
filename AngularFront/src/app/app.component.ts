@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, QueryList, ViewChildren } from '@angular/core';
 import { RestserviceService } from './restservice.service';
 import { World, Product, Pallier } from './world';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { ProductComponent } from './product/product.component'
 
 @Component({
   selector: 'app-root',
@@ -13,11 +14,11 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class AppComponent {
   title = 'IsisAdventureCapitalist';
   world: World = new World();
-  //server: string;
   server: String="http://localhost:8080/";
   username: string = '';
   qtmulti=1;
   badgeManagers=0;
+  badgeCashUpgrades="";
 
   constructor(private service: RestserviceService, private snackBar: MatSnackBar) {
     this.server = service.getServer();
@@ -33,6 +34,7 @@ export class AppComponent {
     this.world.score = this.world.score + p.quantite * p.revenu * (1 + (this.world.activeangels * this.world.angelbonus / 100));
     if (this.world.money >= 150) {
       this.badgeManagers = 1; 
+      this.badgeCashUpgrades =" new!!";
     }
     if (this.world.money >= 500) {
       this.badgeManagers = 2; 
@@ -86,8 +88,7 @@ export class AppComponent {
         this.qtmulti = 1
     }
   }
-
-   
+  
    onUsernameChanged(): void {
     localStorage.setItem("username", this.username);
     this.service.setUser(this.username);
@@ -101,4 +102,25 @@ export class AppComponent {
     }
     this.service.setUser(this.username);
   }
+
+  @ViewChildren(ProductComponent) public productsComponent: QueryList<ProductComponent>;
+
+  buyCashUpgrade(p: Pallier) {
+    if (this.world.money > p.seuil) {
+      this.world.money = this.world.money - p.seuil;
+      this.world.upgrades.pallier[this.world.upgrades.pallier.indexOf(p)].unlocked = true;
+      if (p.idcible == 0) {
+        this.productsComponent.forEach(produit => produit.calcUpgrade(p));
+      }
+      else {
+        this.productsComponent.forEach(produit => {
+          if (p.idcible == produit.product.id) {
+            produit.calcUpgrade(p);
+          }
+        })
+      } 
+      this.service.putUpgrade(p);
+    }
+  }
+
 }
