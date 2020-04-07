@@ -1,4 +1,4 @@
-import { Component, QueryList, ViewChildren } from '@angular/core';
+import { Component, QueryList, ViewChildren, OnInit } from '@angular/core';
 import { RestserviceService } from './restservice.service';
 import { World, Product, Pallier } from './world';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -121,6 +121,23 @@ export class AppComponent {
       } 
       this.service.putUpgrade(p);
     }
+  }
+
+  bonusAllunlock() {
+    const minQuantite = Math.min(...this.productsComponent.map(p => p.product.quantite));
+    this.world.allunlocks.pallier.map(value => {
+      if (!value.unlocked && minQuantite >= value.seuil) {
+        this.world.allunlocks.pallier[this.world.allunlocks.pallier.indexOf(value)].unlocked = true;
+        this.productsComponent.forEach(prod => prod.calcUpgrade(value));
+      }
+    });
+  }
+
+  ngOnInit(): void {
+    setInterval(() => {
+      this.service.saveWorld(this.world);
+      this.bonusAllunlock()
+    }, 5000);
   }
 
 }

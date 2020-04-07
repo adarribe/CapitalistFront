@@ -45,10 +45,8 @@ export class RestserviceService {
    
 
   private setHeaders(user: string): HttpHeaders {
-    var headers = new HttpHeaders();
-    headers.append("X-User",user);
+    var headers = new HttpHeaders({ 'X-User': user});
     return headers;
-   
   };
 
   public putManager(manager: Pallier): Promise<Response> {
@@ -80,5 +78,15 @@ export class RestserviceService {
       .then(response => response)
       .catch(this.handleError);
   };
+
+  public saveWorld(world: World): Promise<Response> {
+     return this.http
+     .put(this.server + "demo/generic/world", world, {
+         headers: { "X-user": this.getUser() }
+       })
+       .toPromise()
+       .then(response => response)
+       .catch(this.handleError);
+   }
 
 }
