@@ -52,7 +52,7 @@ export class RestserviceService {
   public putManager(manager: Pallier): Promise<Response> {
      return this.http
        .put(this.server + "demo/generic/manager", manager, {
-         headers: { "X-user": this.getUser() }
+         headers: this.setHeaders(this.user)
        })
        .toPromise()
        .then(response => response)
@@ -70,9 +70,8 @@ export class RestserviceService {
   };
 
   public putProduct(produit: Product): Promise<Response> {
-    return this.http
-      .put(this.server + "demo/generic/product", produit, {
-        headers: { "X-user": this.getUser() }
+    return this.http.put(this.server + "demo/generic/product", produit, {
+        headers: this.setHeaders(this.user)
       })
       .toPromise()
       .then(response => response)

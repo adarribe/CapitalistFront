@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, ViewChild, Output, EventEmitter, ElementRef } from '@angular/core';
+import { RestserviceService } from '../restservice.service';
 import { Product } from '../world';
 import { Pallier } from '../world';
 
@@ -9,15 +10,19 @@ const ProgressBar = require("progressbar.js");
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css']
+  
 })
 
 export class ProductComponent implements OnInit {
+  //private service: RestserviceService;
+  service: RestserviceService;
   lastupdate: number;
   prodInProgress: boolean;
   progressbar: any;
   product: Product;
   server: String="http://localhost:8080/";
   progress:any;
+  
 
   @ViewChild('bar') progressBarItem: ElementRef;
   @Output() notifyProduction: EventEmitter<Product> = new EventEmitter<Product>();
@@ -61,6 +66,7 @@ export class ProductComponent implements OnInit {
       this.lastupdate = Date.now();
       this.prodInProgress = true;
     }
+    this.service.putProduct(this.product);
   }
 
   calcScore() {
@@ -122,6 +128,7 @@ export class ProductComponent implements OnInit {
         }
       })
     }
+
   }
 
   calcUpgrade(pallier: Pallier) {

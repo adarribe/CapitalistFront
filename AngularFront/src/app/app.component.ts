@@ -67,6 +67,7 @@ export class AppComponent {
         }
       });
     }
+    this.service.putManager(p);
   }
 
   popMessage(message : string) : void {
