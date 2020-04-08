@@ -68,6 +68,7 @@ export class ProductComponent implements OnInit {
       this.lastupdate = Date.now();
       this.prodInProgress = true;
     }
+    
   }
 
   calcScore() {
@@ -82,7 +83,6 @@ export class ProductComponent implements OnInit {
         this.notifyProduction.emit(this.product);
       }
     }
-
     if (this.product.managerUnlocked) {
       this.startFabrication();
     }
@@ -108,7 +108,8 @@ export class ProductComponent implements OnInit {
   calcMaxCanBuy(): number {
     let qMax = 0;
     let maxCost = 0;
-    let priceOne = this.product.cout*(this.product.croissance**this.product.quantite);
+    let priceOne = 0;
+    priceOne = this.product.cout*(this.product.croissance**this.product.quantite);
     while ((maxCost+priceOne) <= this._money) {
       maxCost += priceOne;
       qMax ++;
@@ -120,12 +121,16 @@ export class ProductComponent implements OnInit {
   buyProduct() {
     if (this._qtmulti <= this.calcMaxCanBuy()) {
       var price = 0;
+      var p = 0;
       for(let i=0; i<this._qtmulti; i++){
         this.newPrice = this.newPrice*this.product.croissance;
+        p= this.product.cout
         price = price + this.newPrice;
+        this.product.cout= price;
       }
-      this.notifyMoney.emit({prix :price, product: this.product});
       this.product.quantite = this.product.quantite + this._qtmulti;
+      this.notifyMoney.emit({prix :p, product: this.product});
+      //this.product.quantite = this.product.quantite + this._qtmulti;
       this.product.palliers.pallier.forEach(value => {
         if (!value.unlocked && this.product.quantite > value.seuil) {
           this.product.palliers.pallier[this.product.palliers.pallier.indexOf(value)].unlocked = true;

@@ -63,6 +63,7 @@ export class AppComponent {
 
   buyManager(p: Pallier) {
     if (this.world.money >= p.seuil) {
+      this.service.putManager(p);
       this.world.money = this.world.money - p.seuil;
       this.world.managers.pallier[this.world.managers.pallier.indexOf(p)].unlocked = true;
       this.world.products.product.forEach(element => {
@@ -70,7 +71,6 @@ export class AppComponent {
           this.world.products.product[this.world.products.product.indexOf(element)].managerUnlocked = true;
         }
       });
-      this.service.putManager(p);
     }
     
   }
