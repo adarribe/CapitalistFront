@@ -117,22 +117,6 @@ export class ProductComponent implements OnInit {
     return qMax;
   }
 
-
- buyProduct2() {
-   if (this._qtmulti <= this.calcMaxCanBuy()) {
-      var price = this.product.cout * this._qtmulti;
-      this.product.quantite = this.product.quantite + this._qtmulti;
-      this.notifyMoney.emit({prix :price, product: this.product});
-      this.product.palliers.pallier.forEach(val => {
-        if (!val.unlocked && this.product.quantite > val.seuil) {
-          this.product.palliers.pallier[this.product.palliers.pallier.indexOf(val)].unlocked = true;
-          this.calcUpgrade(val);
-        }
-      })
-    }
-
-  }
-
   buyProduct() {
     if (this._qtmulti <= this.calcMaxCanBuy()) {
       var price = 0;
