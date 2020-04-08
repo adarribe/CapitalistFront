@@ -1,4 +1,4 @@
-import { Component, QueryList, ViewChildren, OnInit } from '@angular/core';
+import { Component, QueryList, ViewChildren } from '@angular/core';
 import { RestserviceService } from './restservice.service';
 import { World, Product, Pallier } from './world';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -70,8 +70,9 @@ export class AppComponent {
           this.world.products.product[this.world.products.product.indexOf(element)].managerUnlocked = true;
         }
       });
+      this.service.putManager(p);
     }
-    this.service.putManager(p);
+    
   }
 
   popMessage(message : string) : void {
@@ -94,7 +95,7 @@ export class AppComponent {
     }
   }
   
-   onUsernameChanged(): void {
+  onUsernameChanged(): void {
     localStorage.setItem("username", this.username);
     this.service.setUser(this.username);
   }

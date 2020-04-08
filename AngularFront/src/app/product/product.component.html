@@ -7,7 +7,7 @@
     <img class="img" [attr.src]="server+product.logo" (click)="startFabrication()"/>
     </div>
     <p><span> Quantité : {{product.quantite}} </span> </p>  
-    <p><span>  Coût : {{product.cout}} $</span> </p>
+    <p><span>Coût pour 1 : $</span><span [innerHTML]="newPrice | bigvalue"></span></p>
     <p> <span>  Bénefices : {{product.revenu}} $/produit</span> </p>
     <div class="progress" #bar></div>
         <p><button class="btn" (click)="buyProduct()">Buy <span>x{{_qtmulti}}</span></button></p>

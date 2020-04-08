@@ -22,6 +22,7 @@ export class ProductComponent implements OnInit {
   product: Product;
   server: String="http://localhost:8080/";
   progress:any;
+  newPrice: number;
   
 
   @ViewChild('bar') progressBarItem: ElementRef;
@@ -56,6 +57,7 @@ export class ProductComponent implements OnInit {
   @Input()
   set prod(value: Product){
     this.product = value;
+    this.newPrice = this.product.cout;
   }
   
   startFabrication() {
@@ -116,7 +118,7 @@ export class ProductComponent implements OnInit {
   }
 
 
- buyProduct() {
+ buyProduct2() {
    if (this._qtmulti <= this.calcMaxCanBuy()) {
       var price = this.product.cout * this._qtmulti;
       this.product.quantite = this.product.quantite + this._qtmulti;
@@ -129,6 +131,24 @@ export class ProductComponent implements OnInit {
       })
     }
 
+  }
+
+  buyProduct() {
+    if (this._qtmulti <= this.calcMaxCanBuy()) {
+      var price = 0;
+      for(let i=0; i<this._qtmulti; i++){
+        this.newPrice = this.newPrice*this.product.croissance;
+        price = price + this.newPrice;
+      }
+      this.notifyMoney.emit({prix :price, product: this.product});
+      this.product.quantite = this.product.quantite + this._qtmulti;
+      this.product.palliers.pallier.forEach(value => {
+        if (!value.unlocked && this.product.quantite > value.seuil) {
+          this.product.palliers.pallier[this.product.palliers.pallier.indexOf(value)].unlocked = true;
+          this.calcUpgrade(value);
+        }
+      })
+    }
   }
 
   calcUpgrade(pallier: Pallier) {
