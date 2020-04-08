@@ -51,10 +51,14 @@ export class AppComponent {
     if (this.world.money >= 10000) {
       this.badgeManagers = 6; 
     }
+    this.service.putProduct(p);
+
   }
 
-  onBuy(m: number) {
-    this.world.money = this.world.money - m;
+  onBuy(recu) {
+    this.world.money = this.world.money - recu.prix;
+    this.service.putProduct(recu.product);
+
   }
 
   buyManager(p: Pallier) {

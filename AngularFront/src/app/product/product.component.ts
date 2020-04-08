@@ -26,7 +26,7 @@ export class ProductComponent implements OnInit {
 
   @ViewChild('bar') progressBarItem: ElementRef;
   @Output() notifyProduction: EventEmitter<Product> = new EventEmitter<Product>();
-  @Output() notifyMoney: EventEmitter<number> = new EventEmitter<number>();
+  @Output() notifyMoney = new EventEmitter();
   
 
   constructor() { }
@@ -66,7 +66,6 @@ export class ProductComponent implements OnInit {
       this.lastupdate = Date.now();
       this.prodInProgress = true;
     }
-    this.service.putProduct(this.product);
   }
 
   calcScore() {
@@ -78,9 +77,10 @@ export class ProductComponent implements OnInit {
         this.lastupdate = 0;
         this.prodInProgress  = false;
         this.progressbar.set(0);
+        this.notifyProduction.emit(this.product);
       }
-      this.notifyProduction.emit(this.product);
     }
+
     if (this.product.managerUnlocked) {
       this.startFabrication();
     }
@@ -120,7 +120,7 @@ export class ProductComponent implements OnInit {
    if (this._qtmulti <= this.calcMaxCanBuy()) {
       var price = this.product.cout * this._qtmulti;
       this.product.quantite = this.product.quantite + this._qtmulti;
-      this.notifyMoney.emit(price);
+      this.notifyMoney.emit({prix :price, product: this.product});
       this.product.palliers.pallier.forEach(val => {
         if (!val.unlocked && this.product.quantite > val.seuil) {
           this.product.palliers.pallier[this.product.palliers.pallier.indexOf(val)].unlocked = true;
