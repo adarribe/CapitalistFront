@@ -28,6 +28,8 @@ export class ProductComponent implements OnInit {
   @ViewChild('bar') progressBarItem: ElementRef;
   @Output() notifyProduction: EventEmitter<Product> = new EventEmitter<Product>();
   @Output() notifyMoney = new EventEmitter();
+ 
+
   
 
   constructor() { }
@@ -79,10 +81,10 @@ export class ProductComponent implements OnInit {
     if (this.product.managerUnlocked && this.product.timeleft === 0) {
       this.startFabrication();
     }
-    if (this.prodInProgress) {
-      if (this.product.timeleft > 0) {
+    else if (this.product.timeleft >0 ) {
         this.product.timeleft = this.product.timeleft - (Date.now() - this.lastupdate);
-      } else {
+        this.lastupdate = Date.now();
+    if(this.product.timeleft <= 0){
         this.product.timeleft = 0;
         this.lastupdate = 0;
         this.prodInProgress  = false;
@@ -94,6 +96,7 @@ export class ProductComponent implements OnInit {
       }
     }
   }
+  
 
   _qtmulti: number;
   @Input()

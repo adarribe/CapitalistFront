@@ -58,8 +58,8 @@ export class AppComponent {
   onBuy(recu) {
     this.world.money = this.world.money - recu.prix;
     this.service.putProduct(recu.product);
-
   }
+
 
   buyManager(p: Pallier) {
     if (this.world.money >= p.seuil) {
