@@ -113,6 +113,7 @@ export class AppComponent {
 
   buyCashUpgrade(p: Pallier) {
     if (this.world.money > p.seuil) {
+      this.service.putUpgrade(p);
       this.world.money = this.world.money - p.seuil;
       this.world.upgrades.pallier[this.world.upgrades.pallier.indexOf(p)].unlocked = true;
       if (p.idcible == 0) {

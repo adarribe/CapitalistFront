@@ -58,6 +58,10 @@ export class ProductComponent implements OnInit {
   set prod(value: Product){
     this.product = value;
     this.newPrice = this.product.cout;
+    if (this.product.managerUnlocked && this.product.timeleft > 0) {
+      this.lastupdate = Date.now();
+      this.progressbar = this.product.vitesse;
+    }
   }
   
   startFabrication() {
@@ -72,6 +76,9 @@ export class ProductComponent implements OnInit {
   }
 
   calcScore() {
+    if (this.product.managerUnlocked && this.product.timeleft === 0) {
+      this.startFabrication();
+    }
     if (this.prodInProgress) {
       if (this.product.timeleft > 0) {
         this.product.timeleft = this.product.timeleft - (Date.now() - this.lastupdate);
@@ -81,10 +88,10 @@ export class ProductComponent implements OnInit {
         this.prodInProgress  = false;
         this.progressbar.set(0);
         this.notifyProduction.emit(this.product);
+        if (this.product.managerUnlocked){
+          this.prod;
+        }
       }
-    }
-    if (this.product.managerUnlocked) {
-      this.startFabrication();
     }
   }
 
@@ -109,7 +116,7 @@ export class ProductComponent implements OnInit {
     let qMax = 0;
     let maxCost = 0;
     let priceOne = 0;
-    priceOne = this.product.cout*(this.product.croissance**this.product.quantite);
+    priceOne = this.product.cout;
     while ((maxCost+priceOne) <= this._money) {
       maxCost += priceOne;
       qMax ++;

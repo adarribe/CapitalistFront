@@ -4,10 +4,10 @@ float: none;
 margin: 0 auto;
 }
 .img{
-  padding: 15px 15px 15px 15px;
+  padding: 10px 10px 10px 10px;
   height: 100px;
   width: 100px;
-}
+margin-bottom: 10px;}
 
 .obj {
   font-family: Georgia, serif;
@@ -21,6 +21,7 @@ margin: 0 auto;
   font-variant: small-caps;
   text-transform: capitalize;
   }
+
 .text{
   
   background-color: blueviolet;
