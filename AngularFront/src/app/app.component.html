@@ -39,7 +39,7 @@
           </div>
         </div>
         <div class="col-md-10">         
-          <app-product [prod]="world.products.product[0]" [money]="world.money" [qtmulti]="qtmulti" (notifyProduction)="onProductionDone($event)" (notifyMoney)="onBuy($event)" (notifyProduct)="fabrication($event)"></app-product>>
+          <app-product [prod]="world.products.product[0]" [money]="world.money" [qtmulti]="qtmulti" (notifyProduction)="onProductionDone($event)" (notifyMoney)="onBuy($event)" (notifyProduct)="fabrication($event)"></app-product>
           <app-product [prod]="world.products.product[1]" [money]="world.money" [qtmulti]="qtmulti" (notifyProduction)="onProductionDone($event)" (notifyMoney)="onBuy($event)" (notifyProduct)="fabrication($event)"></app-product>
           <app-product [prod]="world.products.product[2]" [money]="world.money" [qtmulti]="qtmulti" (notifyProduction)="onProductionDone($event)" (notifyMoney)="onBuy($event)" (notifyProduct)="fabrication($event)"></app-product>
           <app-product [prod]="world.products.product[3]" [money]="world.money" [qtmulti]="qtmulti" (notifyProduction)="onProductionDone($event)" (notifyMoney)="onBuy($event)" (notifyProduct)="fabrication($event)"></app-product>
@@ -49,7 +49,7 @@
 
         <app-modal #managersModal>
           <div class="app-modal-header">
-            <h4 class="modal-title">Managers make you feel better !</h4>
+            <h4 class="modal-title" id="petit">Managers make you feel better !</h4>
             </div>
             <div class="app-modal-body">
               <div *ngFor="let manager of world.managers.pallier">
@@ -76,21 +76,21 @@
 
          <app-modal #unlocksModal>
           <div class="app-modal-header">
-            <h4 class="modal-title">Want to maximize profits ? Get your investments to these quotas !</h4>
+            <h4 class="modal-title" id="petit">Want to maximize profits ? Get your investments to these quotas !</h4>
           </div>
           <div class="app-modal-body">
               <div *ngFor="let unlock of world.allunlocks.pallier">
                 <div class="row">
-                  <div class="col-md-1">
+                  <div class="col-md-1" >
                     <img [attr.src]="server+unlock.logo" class="littleround"/> 
                   </div>
-                  <div class="col-md-5">
+                  <div class="col-md-5" id="petit">
                     <span>{{unlock.typeratio}}</span>
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-3" id="petit">
                     <span>x{{unlock.ratio}}</span>
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-3" id="petit">
                     <span>{{unlock.seuil}}</span>
                   </div>
                 </div>
@@ -103,7 +103,7 @@
 
         <app-modal #cashupgradesModal>
           <div class="app-modal-header">
-            <h4 class="modal-title">Boost your investments !</h4>
+            <h4 class="modal-title" id="petit">Boost your investments !</h4>
           </div>
           <div class="app-modal-body">
             <div *ngFor="let upgrade of world.upgrades.pallier">
@@ -117,10 +117,10 @@
                 <div class="col-md-3" id="petit">
                   <span>{{upgrade.typeratio}}</span>
                 </div>
-                <div class="col-md-3" id="petit">
+                <div class="col-md-2" id="petit">
                   <span>{{upgrade.seuil}}</span>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                   <button class="btn" (click)="buyCashUpgrade(upgrade)">Acheter</button>
               </div>
               </div>

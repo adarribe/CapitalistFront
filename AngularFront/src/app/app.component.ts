@@ -130,7 +130,6 @@ export class AppComponent {
           }
         })
       } 
-      this.service.putUpgrade(p);
     }
   }
 

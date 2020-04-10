@@ -3,6 +3,20 @@
 float: none;
 margin: 0 auto;
 }
+
+#petit{
+  color : rgb(65, 84, 87);
+  font-family: Georgia, serif;
+font-size: 15px;
+letter-spacing: 0.2px;
+word-spacing: 2px;
+font-weight: normal;
+text-decoration: none;
+font-style: normal;
+font-variant: small-caps;
+text-transform: capitalize;
+}
+
 .img{
   padding: 10px 10px 10px 10px;
   height: 100px;
