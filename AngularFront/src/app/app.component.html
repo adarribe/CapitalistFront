@@ -17,7 +17,7 @@
 
   <div class="row align-items-center">
     <div class="col-md-6" id="blue" colonne-centree><span id="worldname">Nom du monde : {{world.name}}</span></div>
-    <div class="col-md-3" id="blue" colonne-centree><span id="worldscore">Votre score: {{world.score}}</span></div>
+    <div class="col-md-3" id="blue" colonne-centree><span id="worldscore">Votre score: </span><span id=worldmoney [innerHTML]="world.score | bigvalue"></span></div>
     <div class="col-md-3" id="blue" colonne-centree><span>Votre argent: $</span><span id=worldmoney [innerHTML]="world.money | bigvalue"></span></div>
     </div>
     <div class="row">
