@@ -23,11 +23,15 @@ export class ProductComponent implements OnInit {
   server: String="http://localhost:8080/";
   progress:any;
   newPrice: number;
+  creation: boolean;
+
   
 
   @ViewChild('bar') progressBarItem: ElementRef;
   @Output() notifyProduction: EventEmitter<Product> = new EventEmitter<Product>();
   @Output() notifyMoney = new EventEmitter();
+  @Output() notifyProduct: EventEmitter<Product> = new EventEmitter<Product>();
+
  
 
   
@@ -73,9 +77,20 @@ export class ProductComponent implements OnInit {
       this.product.timeleft = this.product.vitesse;
       this.lastupdate = Date.now();
       this.prodInProgress = true;
+      if (this.creation){
+        this.notifyProduct.emit(this.product);
+        this.creation=false;
+      } 
     }
     
   }
+
+  put(){
+    this.creation =true ;
+    this.startFabrication()
+
+  }
+
 
   calcScore() {
     if (this.product.managerUnlocked && this.product.timeleft === 0) {
@@ -147,6 +162,8 @@ export class ProductComponent implements OnInit {
           this.calcUpgrade(value);
         }
       })
+      this.service.putProduct(this.product);
+
     }
   }
 

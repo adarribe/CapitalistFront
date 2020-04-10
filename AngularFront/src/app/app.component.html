@@ -39,12 +39,12 @@
           </div>
         </div>
         <div class="col-md-10">         
-          <app-product [prod]="world.products.product[0]" [money]="world.money" [qtmulti]="qtmulti" (notifyProduction)="onProductionDone($event)" (notifyMoney)="onBuy($event)"></app-product>
-          <app-product [prod]="world.products.product[1]" [money]="world.money" [qtmulti]="qtmulti" (notifyProduction)="onProductionDone($event)" (notifyMoney)="onBuy($event)" ></app-product>
-          <app-product [prod]="world.products.product[2]" [money]="world.money" [qtmulti]="qtmulti" (notifyProduction)="onProductionDone($event)" (notifyMoney)="onBuy($event)"></app-product>
-          <app-product [prod]="world.products.product[3]" [money]="world.money" [qtmulti]="qtmulti" (notifyProduction)="onProductionDone($event)" (notifyMoney)="onBuy($event)"></app-product>
-          <app-product [prod]="world.products.product[4]" [money]="world.money" [qtmulti]="qtmulti" (notifyProduction)="onProductionDone($event)" (notifyMoney)="onBuy($event)"></app-product>
-          <app-product [prod]="world.products.product[5]" [money]="world.money" [qtmulti]="qtmulti" (notifyProduction)="onProductionDone($event)" (notifyMoney)="onBuy($event)"></app-product>
+          <app-product [prod]="world.products.product[0]" [money]="world.money" [qtmulti]="qtmulti" (notifyProduction)="onProductionDone($event)" (notifyMoney)="onBuy($event)" (notifyProduct)="fabrication($event)"></app-product>>
+          <app-product [prod]="world.products.product[1]" [money]="world.money" [qtmulti]="qtmulti" (notifyProduction)="onProductionDone($event)" (notifyMoney)="onBuy($event)" (notifyProduct)="fabrication($event)"></app-product>
+          <app-product [prod]="world.products.product[2]" [money]="world.money" [qtmulti]="qtmulti" (notifyProduction)="onProductionDone($event)" (notifyMoney)="onBuy($event)" (notifyProduct)="fabrication($event)"></app-product>
+          <app-product [prod]="world.products.product[3]" [money]="world.money" [qtmulti]="qtmulti" (notifyProduction)="onProductionDone($event)" (notifyMoney)="onBuy($event)" (notifyProduct)="fabrication($event)"></app-product>
+          <app-product [prod]="world.products.product[4]" [money]="world.money" [qtmulti]="qtmulti" (notifyProduction)="onProductionDone($event)" (notifyMoney)="onBuy($event)" (notifyProduct)="fabrication($event)"></app-product>
+          <app-product [prod]="world.products.product[5]" [money]="world.money" [qtmulti]="qtmulti" (notifyProduction)="onProductionDone($event)" (notifyMoney)="onBuy($event)" (notifyProduct)="fabrication($event)"></app-product>
         </div>
 
         <app-modal #managersModal>

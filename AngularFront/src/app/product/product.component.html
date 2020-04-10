@@ -4,7 +4,7 @@
     </div>
     <div  class="row align-items-center">
     <div class="col-md-1" colonne-centree>
-    <img class="img" [attr.src]="server+product.logo" (click)="startFabrication()"/>
+    <img class="img" [attr.src]="server+product.logo" (click)="put()"/>
     </div>
     <p><span> Quantité : {{product.quantite}} </span> </p>  
     <p><span>Coût pour 1 : $</span><span [innerHTML]="newPrice | bigvalue"></span></p>
